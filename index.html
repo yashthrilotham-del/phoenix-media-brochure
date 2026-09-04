@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>Phoenix Media — Masters' Union Gear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --black:#080808;
+      --brown:#2B1204;
+      --orange:#FF5500;
+      --cream:#F5EFE6;
+      --ash:#9C8F86;
+      --line: rgba(245,239,230,0.14);
+      --header-h: 52px;
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      background: radial-gradient(ellipse 900px 500px at 50% -8%, var(--brown) 0%, var(--black) 55%) fixed, var(--black);
+      color:var(--cream);
+      font-family:'Manrope', -apple-system, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3{margin:0; font-family:'Anton', Impact, sans-serif; font-weight:400; letter-spacing:0.01em; text-transform:uppercase;}
+    p{margin:0;}
+    a{color:inherit; text-decoration:none;}
+    ::selection{background:var(--orange); color:var(--black);}
+
+    .brand-header{
+      position:fixed; top:0; left:0; right:0; height:var(--header-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 clamp(1.25rem, 4vw, 2.5rem);
+      background:rgba(8,8,8,0.75);
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+      z-index:50;
+    }
+    .brand-mark{display:flex; align-items:center; gap:0.5rem;}
+    .brand-mark svg{width:16px; height:16px; color:var(--orange);}
+    .brand-mark span{font-size:0.7rem; letter-spacing:0.14em; font-weight:700; text-transform:uppercase;}
+    .brand-header .tagline{font-size:0.66rem; letter-spacing:0.1em; color:var(--ash); text-transform:uppercase;}
+    @media (max-width:700px){ .brand-header .tagline{display:none;} }
+
+    .page{
+      position:relative;
+      padding: calc(var(--header-h) + 2.5rem) clamp(1.25rem,6vw,5rem) 2.8rem;
+      scroll-margin-top:var(--header-h);
+      border-bottom:1px solid var(--line);
+    }
+    .page-inner{max-width:var(--maxw); margin:0 auto; width:100%; position:relative; z-index:2;}
+    .page-num{
+      position:absolute; top:calc(var(--header-h) + 0.9rem); left:clamp(1.25rem,6vw,5rem);
+      font-family:'Anton', sans-serif; font-size:clamp(1.8rem,3.2vw,2.6rem);
+      color:transparent; -webkit-text-stroke:1px rgba(245,239,230,0.16);
+      z-index:1;
+    }
+    .eyebrow{ font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--orange); font-weight:700; margin-bottom:0.7rem; }
+    .h-display{ font-size:clamp(2.1rem,4.8vw,3.6rem); line-height:0.98; color:var(--cream); }
+    .h-display .accent{color:var(--orange);}
+    .lede{ font-size:clamp(0.95rem,1.3vw,1.05rem); color:var(--ash); max-width:600px; line-height:1.5; margin-top:0.9rem;}
+    .lede strong{color:var(--cream); font-weight:700;}
+
+    .btn{
+      display:inline-flex; align-items:center; gap:0.6rem;
+      padding:0.85rem 1.5rem; border:1.5px solid var(--orange);
+      border-radius:2px; font-size:0.76rem; font-weight:700;
+      letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;
+      color:var(--cream); background:transparent; transition:background .2s ease,color .2s ease;
+    }
+    .btn:hover{ background:var(--orange); color:var(--black); }
+    .btn:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; }
+
+    .img-wrap{
+      width:100%; aspect-ratio:4/3;
+      background:#ffffff;
+      border-radius:4px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(245,239,230,0.12);
+      display:flex; align-items:center; justify-content:center;
+      padding:0.75rem;
+    }
+    .img-wrap img{
+      width:100%; height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    /* COVER */
+    .page-cover{ padding-top:calc(var(--header-h) + 2rem); min-height:88vh; display:flex; align-items:flex-end; }
+    .cover-topline{ display:flex; justify-content:space-between; align-items:flex-start; }
+    .cover-topline .small-tag{ font-size:0.7rem; letter-spacing:0.12em; color:var(--ash); text-transform:uppercase; max-width:170px; line-height:1.5; text-align:right;}
+    .cover-headline{ margin-top:1.6rem; }
+    .cover-headline h1{ font-size:clamp(2.9rem,9vw,6.4rem); line-height:0.94; }
+    .cover-headline .line2{ color:var(--orange); }
+    .cover-sub{ margin-top:1rem; font-size:clamp(1rem,1.5vw,1.2rem); color:var(--cream); font-weight:600;}
+    .cover-services{ margin-top:0.5rem; font-size:0.8rem; letter-spacing:0.06em; color:var(--ash); text-transform:uppercase;}
+    .cover-meta{ margin-top:1.5rem; display:flex; flex-direction:column; gap:0.3rem;}
+    .cover-meta span{ font-size:0.76rem; color:var(--ash); }
+    .cover-cta{ margin-top:1.7rem; }
+
+    /* PROCESS */
+    .process{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.3rem; margin-top:2.4rem; position:relative;}
+    .process::before{ content:""; position:absolute; top:1.3rem; left:0; right:0; height:1px; background:var(--line); }
+    .step{ position:relative; padding-top:0.9rem;}
+    .step .num{ font-family:'Anton',sans-serif; font-size:1.4rem; color:var(--orange); display:block; margin-bottom:0.6rem; background:var(--black); width:fit-content; padding-right:0.5rem;}
+    .step h3{ font-family:'Manrope',sans-serif; text-transform:none; font-size:0.96rem; font-weight:800; letter-spacing:0; margin-bottom:0.2rem;}
+    .step p{ font-size:0.82rem; color:var(--ash); line-height:1.4;}
+    @media (max-width:800px){ .process{grid-template-columns:1fr 1fr; gap:1.6rem 1.2rem;} }
+    .closer{ margin-top:2.2rem; padding:1.3rem clamp(1.4rem,3vw,2.2rem); background:var(--orange); border-radius:2px; }
+    .closer h2{ color:var(--black); font-size:clamp(1.25rem,2.6vw,1.7rem); }
+
+    /* BUNDLES */
+    .bundles-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:1rem; margin-top:2.2rem;}
+    .bundle-card{
+      border:1px solid var(--line); border-radius:3px; padding:1.4rem 1.3rem;
+      background:var(--black); display:flex; flex-direction:column; gap:0.7rem; position:relative;
+    }
+    .bundle-card--pop{ border-color:var(--orange); background:linear-gradient(165deg, var(--brown) 0%, var(--black) 85%); }
+    .pop-tag{ position:absolute; top:0.9rem; right:0.9rem; font-size:0.6rem; letter-spacing:0.08em; color:var(--black); background:var(--orange); padding:0.2rem 0.5rem; border-radius:20px; font-weight:800; text-transform:uppercase;}
+    .bundle-card h3{ font-family:'Manrope',sans-serif; text-transform:none; font-size:1.2rem; font-weight:800; letter-spacing:0;}
+    .bundle-includes{ font-size:0.78rem; color:var(--ash); line-height:1.4; min-height:2.2em;}
+    .bundle-price{ display:flex; align-items:baseline; gap:0.7rem; padding-top:0.5rem; border-top:1px solid var(--line); margin-top:0.2rem;}
+    .bundle-price .hr{ font-family:'Anton',sans-serif; font-size:1.4rem; color:var(--orange);}
+    .bundle-price .hr small{ font-family:'Manrope',sans-serif; font-size:0.62rem; color:var(--ash); text-transform:uppercase; letter-spacing:0.05em; font-weight:700;}
+    .bundle-price .day{ font-size:0.82rem; color:var(--cream); font-weight:700;}
+    .bundle-best{ font-size:0.72rem; color:var(--ash); margin-top:auto;}
+    .bundle-best b{ color:var(--cream); font-weight:700;}
+
+    /* PRODUCT CARDS */
+    .product-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:2.2rem;}
+    .product-card{ border:1px solid var(--line); border-radius:3px; padding:1.3rem; background:var(--black); display:flex; flex-direction:column; gap:0.85rem; }
+    .product-card h3{ font-family:'Manrope',sans-serif; text-transform:none; font-size:1rem; font-weight:800; letter-spacing:0;}
+    .product-card .model{ font-size:0.66rem; letter-spacing:0.04em; color:var(--orange); text-transform:uppercase; font-weight:700; margin-top:-0.5rem;}
+    .product-card .best-for{ font-size:0.78rem; color:var(--ash); line-height:1.45;}
+    .product-card .meta-row{ display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:0.75rem; border-top:1px solid var(--line);}
+    .product-card .qty{ font-size:0.7rem; color:var(--ash); letter-spacing:0.03em;}
+    .product-card .qty b{ color:var(--cream);}
+    .price-tag{ text-align:right;}
+    .price-tag .amt{ font-family:'Anton',sans-serif; font-size:1rem; color:var(--orange); display:block;}
+    .price-tag .unit{ font-size:0.6rem; color:var(--ash); letter-spacing:0.04em; text-transform:uppercase;}
+    @media (max-width:900px){ .product-grid{grid-template-columns:1fr 1fr;} }
+    @media (max-width:560px){ .product-grid{grid-template-columns:1fr;} }
+
+    /* PRICING TABLE */
+    .pricing-table{ width:100%; border-collapse:collapse; margin-top:2rem; font-size:0.84rem;}
+    .pricing-table th{ text-align:left; font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ash); font-weight:700; padding:0.6rem 0.7rem; border-bottom:1px solid var(--line); }
+    .pricing-table td{ padding:0.75rem 0.7rem; border-bottom:1px solid var(--line); vertical-align:middle;}
+    .pricing-table tr.cat-row td{ padding-top:1.2rem; font-family:'Anton',sans-serif; font-size:0.74rem; letter-spacing:0.1em; color:var(--orange); border-bottom:none; }
+    .pricing-table td.num{ font-variant-numeric:tabular-nums; color:var(--cream);}
+    .pricing-table tr:hover td{ background:rgba(255,85,0,0.04); }
+
+    .support-block{ margin-top:2.6rem; display:grid; grid-template-columns:1.3fr 1fr; gap:2rem; align-items:start;}
+    .support-block h3{ font-family:'Manrope',sans-serif; text-transform:none; font-size:1.15rem; font-weight:800;}
+    .support-block p{ font-size:0.86rem; color:var(--ash); line-height:1.55; margin-top:0.55rem; max-width:42ch;}
+    .contact-link-wrap{ padding-top:1.2rem; }
+    .form-btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:0.6rem;
+      padding:0.9rem 1.4rem; background:rgba(255,85,0,0.12); border:1.5px solid var(--orange);
+      color:var(--cream); font-weight:700; font-size:0.82rem; letter-spacing:0.06em;
+      border-radius:3px; transition:all .2s ease;
+    }
+    .form-btn:hover{ background:var(--orange); color:var(--black); }
+    @media (max-width:800px){ .support-block{grid-template-columns:1fr;} }
+
+    /* BOOKING */
+    .book-top{ display:grid; grid-template-columns:1.1fr 1fr; gap:2.4rem; align-items:start;}
+    .book-steps{ display:flex; flex-direction:column; gap:1.1rem; margin-top:1.8rem;}
+    .book-step{ display:flex; gap:1rem; align-items:flex-start;}
+    .book-step .num{ font-family:'Anton',sans-serif; color:var(--orange); font-size:1.2rem; flex:none; width:2.2rem;}
+    .book-step h3{ font-family:'Manrope',sans-serif; text-transform:none; font-size:0.94rem; font-weight:800;}
+    .book-step p{ font-size:0.8rem; color:var(--ash); margin-top:0.2rem;}
+    .qr-block{ border:1px solid var(--line); border-radius:3px; padding:1.6rem; text-align:center;}
+    .qr-box{
+      width:140px; height:140px; margin:1rem auto 0.6rem;
+      background:#ffffff; padding:6px; border-radius:4px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .qr-box img{ width:100%; height:100%; object-fit:contain; display:block; }
+    .qr-name{ font-size:0.85rem; font-weight:700; color:var(--cream); letter-spacing:0.05em; text-transform:uppercase; margin-top:0.6rem; }
+    .final-cta{ margin-top:2.6rem; text-align:center;}
+    .final-cta h2{ font-size:clamp(2rem,6vw,3.8rem); line-height:1;}
+    .final-cta .line2{ color:var(--orange);}
+    .book-contact{ margin-top:2rem; text-align:center; padding-top:1.6rem; border-top:1px solid var(--line);}
+    .book-contact .biz{ font-weight:800; font-size:0.95rem;}
+    .book-contact .sub{ font-size:0.8rem; color:var(--ash); margin-top:0.25rem;}
+    .book-contact .form-link{ margin-top:0.8rem; display:inline-block; font-size:0.84rem; color:var(--orange); font-weight:700; text-decoration:underline;}
+    @media (max-width:800px){ .book-top{grid-template-columns:1fr;} }
+    .footer-note{ text-align:center; padding:2rem 1rem 3rem; font-size:0.68rem; letter-spacing:0.06em; color:var(--ash); text-transform:uppercase;}
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: #080808 !important;
+      }
+      .brand-header {
+        display: none !important;
+      }
+      .page {
+        page-break-after: always !important;
+        break-after: page !important;
+        min-height: 100vh !important;
+        padding: 3rem 2.5rem !important;
+        border-bottom: none !important;
+      }
+      .product-card, .bundle-card, .pricing-table tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="brand-header">
+    <div class="brand-mark">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 44C14 38 8 28 10 16c4 4 7 6 10 6-1-6 1-12 6-16 1 6 4 10 8 12 5 3 8 8 8 14 0 8-8 12-18 12z"/></svg>
+      <span>Phoenix Media</span>
+    </div>
+    <div class="tagline">Masters' Union Gear — Equipment Rentals</div>
+  </header>
+
+  <!-- PAGE 1 — COVER -->
+  <section class="page page-cover" id="page1">
+    <div class="page-inner">
+      <div class="cover-topline">
+        <span class="brand-mark">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;color:var(--orange);"><path d="M24 44C14 38 8 28 10 16c4 4 7 6 10 6-1-6 1-12 6-16 1 6 4 10 8 12 5 3 8 8 8 14 0 8-8 12-18 12z"/></svg>
+          <span style="font-size:0.76rem;letter-spacing:0.14em;">Phoenix Media</span>
+        </span>
+        <span class="small-tag">Masters' Union<br>Gear Rental Service</span>
+      </div>
+      <div class="cover-headline">
+        <h1>YOUR IDEA.<br><span class="line2">OUR GEAR.</span></h1>
+        <p class="cover-sub">Professional gear for your next project.</p>
+        <p class="cover-services">Photography · Audio · Lighting · Production</p>
+        <div class="cover-meta">
+          <span>Exclusively for Masters' Union creators</span>
+          <span>Hourly + Daily Rentals</span>
+        </div>
+        <div class="cover-cta">
+          <a class="btn" href="#page2">Explore the Gear →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — PROCESS -->
+  <section class="page" id="page2">
+    <span class="page-num">02</span>
+    <div class="page-inner">
+      <div class="eyebrow">How it works</div>
+      <h2 class="h-display">CREATE WITHOUT<br><span class="accent">BUYING.</span></h2>
+      <p class="lede"><strong>Your next project shouldn't be limited by the gear you own.</strong> Rent professional photography, audio, lighting and production equipment — whenever you need it.</p>
+
+      <div class="process">
+        <div class="step"><span class="num">01</span><h3>Choose</h3><p>Find your equipment.</p></div>
+        <div class="step"><span class="num">02</span><h3>Book</h3><p>Pick your rental duration.</p></div>
+        <div class="step"><span class="num">03</span><h3>Create</h3><p>Pick up and get to work.</p></div>
+        <div class="step"><span class="num">04</span><h3>Return</h3><p>Return it when you're done.</p></div>
+      </div>
+
+      <div class="closer">
+        <h2>LESS BUYING. MORE CREATING.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 — BUNDLES -->
+  <section class="page" id="page3">
+    <span class="page-num">03</span>
+    <div class="page-inner">
+      <div class="eyebrow">Ready-made setups</div>
+      <h2 class="h-display">JUST GET<br><span class="accent">THE KIT.</span></h2>
+      <p class="lede">Pick a bundle and start creating — no mixing required.</p>
+
+      <div class="bundles-grid">
+        <div class="bundle-card bundle-card--pop">
+          <span class="pop-tag">Popular</span>
+          <h3>Creator Kit</h3>
+          <p class="bundle-includes">Tripod + Microphone + Softbox</p>
+          <div class="bundle-price"><span class="hr">₹249<small>/hr</small></span><span class="day">₹998/day</span></div>
+          <p class="bundle-best">Best for: <b>Projects · Interviews · Reels</b></p>
+        </div>
+
+        <div class="bundle-card bundle-card--pop">
+          <span class="pop-tag">Popular</span>
+          <h3>Creator+ Kit</h3>
+          <p class="bundle-includes">Tripod + Microphone + Softbox + Panel Light</p>
+          <div class="bundle-price"><span class="hr">₹299<small>/hr</small></span><span class="day">₹1,099/day</span></div>
+          <p class="bundle-best">Best for: <b>Video · Product shoots · Content</b></p>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Podcast Starter</h3>
+          <p class="bundle-includes">Podcast Mic + Mic Stand</p>
+          <div class="bundle-price"><span class="hr">₹129<small>/hr</small></span><span class="day">₹510/day</span></div>
+          <p class="bundle-best">Best for: <b>Podcasts · Interviews</b></p>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Essentials Kit</h3>
+          <p class="bundle-includes">Tripod + Microphone</p>
+          <div class="bundle-price"><span class="hr">₹129<small>/hr</small></span><span class="day">₹499/day</span></div>
+          <p class="bundle-best">Best for: <b>Quick shoots</b></p>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Green Screen Duo</h3>
+          <p class="bundle-includes">2× Green Screen + Stand</p>
+          <div class="bundle-price"><span class="hr">₹69<small>/hr</small></span><span class="day">₹250/day</span></div>
+          <p class="bundle-best">Best for: <b>Studio backdrops</b></p>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Group Shoot Kit</h3>
+          <p class="bundle-includes">2× Podcast Mic + 2× Mic Stand + 2× Softbox + 2× Tripod</p>
+          <div class="bundle-price"><span class="hr">₹449<small>/hr</small></span><span class="day">₹2,206/day</span></div>
+          <p class="bundle-best">Best for: <b>Group shoots · Multi-cam</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4 — AUDIO -->
+  <section class="page" id="page4">
+    <span class="page-num">04</span>
+    <div class="page-inner">
+      <div class="eyebrow">Audio</div>
+      <h2 class="h-display">MAKE EVERY<br><span class="accent">WORD COUNT.</span></h2>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/xJRB348v/Podcast-mic-1.png" alt="Podcast Microphone" referrerpolicy="no-referrer">
+          </div>
+          <h3>Podcast Microphone</h3>
+          <div class="model">MAONO PD200X · Dynamic Mic</div>
+          <p class="best-for">Best for: Podcasts · Studio recording · Voiceovers</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>2</b></span>
+            <span class="price-tag">
+              <span class="amt">₹250</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹1,000 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/ftK1fryY/Podcast-mic-stand-1.png" alt="Podcast Mic Stand" referrerpolicy="no-referrer">
+          </div>
+          <h3>Podcast Mic Stand</h3>
+          <div class="model">Desk Boom Arm</div>
+          <p class="best-for">Best for: Desk audio setups · Live broadcasting</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>2</b></span>
+            <span class="price-tag">
+              <span class="amt">₹39</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹130 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/dZYg2KJM/Hollyland-mic.jpg" alt="Hollyland Wireless Lavalier Microphone" referrerpolicy="no-referrer">
+          </div>
+          <h3>Hollyland Mic</h3>
+          <div class="model">Hollyland Wireless Mic Duo</div>
+          <p class="best-for">Best for: Interviews · Presentations · Mobile shoots</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>1</b></span>
+            <span class="price-tag">
+              <span class="amt">₹120</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹475 / Day</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 5 — LIGHTING & ACCESSORIES -->
+  <section class="page" id="page5">
+    <span class="page-num">05</span>
+    <div class="page-inner">
+      <div class="eyebrow">Lighting &amp; Modifiers</div>
+      <h2 class="h-display">PRECISION LIGHTING<br><span class="accent">&amp; MODIFIERS.</span></h2>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/QK3vQrhz/Panel-Light.jpg" alt="Panel Light" referrerpolicy="no-referrer">
+          </div>
+          <h3>Panel Light</h3>
+          <div class="model">LED Studio Light</div>
+          <p class="best-for">Best for: Key lighting · Interviews · Product video</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>1</b></span>
+            <span class="price-tag">
+              <span class="amt">₹200</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹800 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/QK3vQrhw/Godox-Softbox.jpg" alt="Godox Studio Softbox" referrerpolicy="no-referrer">
+          </div>
+          <h3>Softbox</h3>
+          <div class="model">Godox Studio Softbox</div>
+          <p class="best-for">Best for: Soft diffused portrait & video lighting</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>1</b></span>
+            <span class="price-tag">
+              <span class="amt">₹60</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹240 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/ZvSX8hJt/light-bulb-orient.jpg" alt="Orient Light Bulb" referrerpolicy="no-referrer">
+          </div>
+          <h3>Light Bulb Orient</h3>
+          <div class="model">Orient 50W High Power</div>
+          <p class="best-for">Best for: High output continuous soft lighting</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>1</b></span>
+            <span class="price-tag">
+              <span class="amt">₹19</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹80 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/VrR2WVv5/Honeycomb-Diffuser.jpg" alt="Honeycomb Diffuser Grid" referrerpolicy="no-referrer">
+          </div>
+          <h3>Honeycomb Diffuser</h3>
+          <div class="model">Directional Grid</div>
+          <p class="best-for">Best for: Spill control · Direct beam shaping</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>1</b></span>
+            <span class="price-tag">
+              <span class="amt">₹39</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹160 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/V082qcm4/Bulb-Holder.jpg" alt="Bulb Holder Adapter" referrerpolicy="no-referrer">
+          </div>
+          <h3>Bulb Holder</h3>
+          <div class="model">E27 Mount with Swivel</div>
+          <p class="best-for">Best for: Umbrella brackets · Softbox bulb mounts</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>1</b></span>
+            <span class="price-tag">
+              <span class="amt">₹29</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹100 / Day</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 6 — PRODUCTION & SUPPORT -->
+  <section class="page" id="page6">
+    <span class="page-num">06</span>
+    <div class="page-inner">
+      <div class="eyebrow">Support &amp; Backdrops</div>
+      <h2 class="h-display">RIGGING &amp;<br><span class="accent">STUDIO SUPPORT.</span></h2>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/V082qcm2/Greenscreen.jpg" alt="Green Screen Backdrop with Stand" referrerpolicy="no-referrer">
+          </div>
+          <h3>Green Screen</h3>
+          <div class="model">Chroma Backdrop + Support Stand</div>
+          <p class="best-for">Best for: Virtual sets · VFX · Background replacement</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>2</b></span>
+            <span class="price-tag">
+              <span class="amt">₹125</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹500 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/G8Q6x5tG/Tripod-Stand.jpg" alt="Heavy Duty Tripod Stand" referrerpolicy="no-referrer">
+          </div>
+          <h3>Tripod Stand</h3>
+          <div class="model">Fluid Head Camera Stand</div>
+          <p class="best-for">Best for: Steady camera shots · Smooth pans</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>2</b></span>
+            <span class="price-tag">
+              <span class="amt">₹49</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹180 / Day</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="img-wrap">
+            <img src="https://i.postimg.cc/H8gFwCdf/Light-Tripod-Stand.jpg" alt="Tripod Stand Light" referrerpolicy="no-referrer">
+          </div>
+          <h3>Tripod Stand Light</h3>
+          <div class="model">Adjustable Light Support</div>
+          <p class="best-for">Best for: Panel lights · Softboxes · Background lights</p>
+          <div class="meta-row">
+            <span class="qty">Qty <b>2</b></span>
+            <span class="price-tag">
+              <span class="amt">₹39</span><span class="unit">/ Hour</span>
+              <span class="amt" style="font-size:0.8rem;color:var(--cream);">₹130 / Day</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 7 — PRICING MENU -->
+  <section class="page" id="page7">
+    <span class="page-num">07</span>
+    <div class="page-inner">
+      <div class="eyebrow">The full catalog</div>
+      <h2 class="h-display">THE GEAR<br><span class="accent">MENU.</span></h2>
+
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Equipment</th>
+            <th>Qty</th>
+            <th>Hourly</th>
+            <th>Daily</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cat-row"><td colspan="4">Audio</td></tr>
+          <tr><td>Podcast Mic</td><td class="num">2</td><td class="num">₹250</td><td class="num">₹1,000</td></tr>
+          <tr><td>Podcast Mic Stand</td><td class="num">2</td><td class="num">₹39</td><td class="num">₹130</td></tr>
+          <tr><td>Hollyland Mic</td><td class="num">1</td><td class="num">₹120</td><td class="num">₹475</td></tr>
+
+          <tr class="cat-row"><td colspan="4">Lighting &amp; Modifiers</td></tr>
+          <tr><td>Panel Light</td><td class="num">1</td><td class="num">₹200</td><td class="num">₹800</td></tr>
+          <tr><td>Softbox</td><td class="num">1</td><td class="num">₹60</td><td class="num">₹240</td></tr>
+          <tr><td>Light Bulb Orient</td><td class="num">1</td><td class="num">₹19</td><td class="num">₹80</td></tr>
+          <tr><td>Honeycomb Diffuser</td><td class="num">1</td><td class="num">₹39</td><td class="num">₹160</td></tr>
+          <tr><td>Bulb Holder</td><td class="num">1</td><td class="num">₹29</td><td class="num">₹100</td></tr>
+
+          <tr class="cat-row"><td colspan="4">Support / Production</td></tr>
+          <tr><td>Tripod Stand</td><td class="num">2</td><td class="num">₹49</td><td class="num">₹180</td></tr>
+          <tr><td>Tripod Stand Light</td><td class="num">2</td><td class="num">₹39</td><td class="num">₹130</td></tr>
+          <tr><td>Green Screen</td><td class="num">2</td><td class="num">₹125</td><td class="num">₹500</td></tr>
+        </tbody>
+      </table>
+
+      <div class="support-block">
+        <div>
+          <h3>Need Help?</h3>
+          <p>Not sure what gear fits your project? Submit a rental request or inquiry via our form.</p>
+        </div>
+        <div class="contact-link-wrap">
+          <a class="form-btn" href="https://forms.gle/4aCndADb9vAFuAyy7" target="_blank" rel="noopener noreferrer">
+            Open Booking &amp; Inquiry Form →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 8 — BOOK NOW -->
+  <section class="page" id="page8">
+    <span class="page-num">08</span>
+    <div class="page-inner">
+      <div class="book-top">
+        <div>
+          <div class="eyebrow">Get your gear</div>
+          <h2 class="h-display">READY TO<br><span class="accent">CREATE?</span></h2>
+          <p class="lede">Book your gear.</p>
+          <div class="book-steps">
+            <div class="book-step"><span class="num">01</span><div><h3>Choose</h3><p>Select your individual equipment or bundle.</p></div></div>
+            <div class="book-step"><span class="num">02</span><div><h3>Select Your Time</h3><p>Choose an hourly or daily rental slot.</p></div></div>
+            <div class="book-step"><span class="num">03</span><div><h3>Submit Form</h3><p>Fill out the booking form or scan the QR code.</p></div></div>
+            <div class="book-step"><span class="num">04</span><div><h3>Create</h3><p>Pick up your gear and get straight to work.</p></div></div>
+          </div>
+        </div>
+        <div class="qr-block">
+          <div class="eyebrow" style="margin-bottom:0;">Scan to Book</div>
+          <div class="qr-box">
+            <img src="https://i.postimg.cc/hzrN15v7/QR-code.png" alt="Booking Form QR Code" referrerpolicy="no-referrer">
+          </div>
+          <div class="qr-name">Lakshya Jain</div>
+        </div>
+      </div>
+
+      <div class="final-cta">
+        <h2>YOUR NEXT PROJECT<br><span class="line2">STARTS HERE.</span></h2>
+      </div>
+
+      <div class="book-contact">
+        <div class="biz">Phoenix Media</div>
+        <div class="sub">Masters' Union Gear</div>
+        <a class="form-link" href="https://forms.gle/4aCndADb9vAFuAyy7" target="_blank" rel="noopener noreferrer">
+          https://forms.gle/4aCndADb9vAFuAyy7
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-note">Phoenix Media × Masters' Union — Gear Rental Brochure</div>
+
+</body>
+</html>
